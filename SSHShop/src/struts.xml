@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.devMode" value="true"></constant>
+	<package name="shop" extends="struts-default" namespace="/">
+		<global-results>
+			<result name="msg" >/WEB-INF/jsp/msg.jsp</result>
+		</global-results>
+		
+		<!-- 配置首页访问的action -->
+		<action name="index" class="indexAction">
+			<result name="index">/WEB-INF/jsp/index.jsp</result>
+		</action>
+	</package>
+</struts>    
