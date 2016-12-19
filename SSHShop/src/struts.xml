@@ -1,15 +1,34 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<constant name="struts.devMode" value="true"></constant>
-	<package name="shop" extends="struts-default" namespace="/">
-		<global-results>
-			<result name="msg" >/WEB-INF/jsp/msg.jsp</result>
+	<constant name="struts.devMode" value="false"></constant>
+	<package name="shop" namespace="/" extends="struts-default">
+		<global-results >
+			<result name="msg">/WEB-INF/jsp/msg.jsp</result>
 		</global-results>
-		
 		<!-- 配置首页访问的action -->
 		<action name="index" class="indexAction">
 			<result name="index">/WEB-INF/jsp/index.jsp</result>
 		</action>
+		
+		<!-- 配置用户模块的action -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="registPage">/WEB-INF/jsp/regist.jsp</result>
+			<result name="checkCodeFail">/WEB-INF/jsp/regist.jsp</result>
+			<result name="input">/WEB-INF/jsp/regist.jsp</result>
+			<result name="loginPage">/WEB-INF/jsp/login.jsp</result>
+			<result name="login">/WEB-INF/jsp/login.jsp</result>
+			<result name="loginSuccess" type="redirectAction">index</result>
+			<result name="quit" type="redirectAction">index</result>
+		</action>
+		
+		<!-- 生成验证码 -->
+		<action name="checkImg" class="checkImgAction"></action>
+		
+		<!-- 配置商品模块的action -->
+		<action name="product_*" class="productAction" method="{1}">
+			<result name="detail">/WEB-INF/jsp/product.jsp</result>
+			<result name="findByCid">/WEB-INF/jsp/productList.jsp</result>
+		</action>
 	</package>
-</struts>    
+</struts>   
