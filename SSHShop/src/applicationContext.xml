@@ -38,6 +38,8 @@
 				<value>com/wq/category/pojo/Category.hbm.xml</value>
 				<value>com/wq/product/pojo/Product.hbm.xml</value>
 				<value>com/wq/categorySecond/pojo/CategorySecond.hbm.xml</value>
+				<value>com/wq/order/pojo/Order.hbm.xml</value>
+				<value>com/wq/order/pojo/OrderItem.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -64,8 +66,14 @@
 	<bean id="productAction" class="com.wq.product.action.ProductAction" scope="prototype">
 		<property name="productService" ref="productService"></property>
 	</bean>
+	<bean id="cartAction" class="com.wq.cart.action.CartAction" scope="prototype">
+		<property name="productService" ref="productService"></property>
+	</bean>
+	<bean id="orderAction" class="com.wq.order.action.OrderAction" scope="prototype">
+		<property name="orderService" ref="orderService"></property>
+	</bean>
 	
-	<!-- service层的配置 -->
+	<!-- service层的配置 ==================== -->
 	<bean id="userService" class="com.wq.user.service.UserService">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
@@ -75,8 +83,11 @@
 	<bean id="productService" class="com.wq.product.service.ProductService">
 		<property name="productDao" ref="productDao"></property>
 	</bean>
+	<bean id="orderService" class="com.wq.order.service.OrderService">
+		<property name="orderDao" ref="orderDao"></property>
+	</bean>
 	
-	<!-- dao层的配置 -->
+	<!-- dao层的配置 ================================ -->
 	<bean id="userDao" class="com.wq.user.dao.UserDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
@@ -84,6 +95,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="productDao" class="com.wq.product.dao.ProductDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="orderDao" class="com.wq.order.dao.OrderDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 </beans>

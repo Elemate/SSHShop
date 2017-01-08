@@ -12,10 +12,10 @@
 			</s:if>
 			<s:else>
 			<li id="headerLogin" class="headerLogin" style="display: list-item;">
-				<s:property value="#session.existUser.name"/> ${session.existUser.name }
+				<s:property value="#session.existUser.name"/> 
 				|</li>
 			<li id="headerLogin" class="headerLogin" style="display: list-item;">
-				<a href="#">我的订单</a>
+				<a href="${pageContext.request.contextPath }/order_findOrderByOid.action?page=1">我的订单</a>
 			|</li>
 			<li id="headerRegister" class="headerRegister"
 				style="display: list-item;"><a href="${ pageContext.request.contextPath }/user_quit.action">退出</a>|
@@ -28,7 +28,7 @@
 		</ul>
 	</div>
 	<div class="cart">
-		<a href="./购物车.htm">购物车</a>
+		<a href="${pageContext.request.contextPath }/cart_myCart.action">购物车</a>
 	</div>
 	<div class="phone">
 		客服热线: <strong>96008/53277764</strong>

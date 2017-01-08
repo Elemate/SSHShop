@@ -38,7 +38,6 @@
 
 	<div class="container index">
 
-
 		<div class="span24">
 			<div id="hotProduct" class="hotProduct clearfix">
 				<div class="title">

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.wq.order.pojo.Order" table="orders">
+		<id name="oid">
+			<generator class="native"></generator>
+		</id>
+		<property name="total" />
+		<property name="ordertime" />
+		<property name="state" />
+		<property name="name" />
+		<property name="phone" />
+		<property name="addr" />
+		<many-to-one name="user" class="com.wq.user.pojo.User" column="uid"></many-to-one>
+		<set name="orderItems" cascade="save-update" lazy="false">
+			<key column="oid"></key>
+			<one-to-many class="com.wq.order.pojo.OrderItem" />
+		</set>
+	</class>
+</hibernate-mapping>

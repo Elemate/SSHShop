@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.wq.category.pojo.Category" table="category">
+		<id name="cid">
+			<generator class="native"></generator>
+		</id>
+		<property name="cname"></property>
+		
+		<!-- 配置二级分类的集合  set是无序的，所以用order-by 如果用list的话，查出来的会多出一列，用来存放顺序的-->		
+		<set name="categorySeconds" order-by="csid" lazy="false" >
+			<key column="cid"></key>
+			<one-to-many class="com.wq.categorySecond.pojo.CategorySecond"/>
+		</set>
+	</class>	
+</hibernate-mapping>

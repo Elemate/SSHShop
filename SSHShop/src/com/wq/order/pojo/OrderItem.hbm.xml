@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.wq.order.pojo.OrderItem" table="orderItem">
+		<id name="itemid">
+			<generator class="native"></generator>
+		</id>
+		<property name="count"></property>
+		<property name="subTotal"></property>
+		<many-to-one name="product" class="com.wq.product.pojo.Product" column="pid" lazy="false"></many-to-one>
+		<many-to-one name="order" class="com.wq.order.pojo.Order" column="oid" ></many-to-one>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.wq.categorySecond.pojo.CategorySecond" table="categorysecond">
+		<id name="csid">
+			<generator class="native"></generator>
+		</id>
+		<property name="csname"></property>
+		<!-- 二级分类与一级分类的关联 lazy默认为true 查不到数据 -->
+		<many-to-one name="category" class="com.wq.category.pojo.Category" column="cid" lazy="false"></many-to-one>
+		<!-- 二级分类与商品的关联 -->
+		<set name="products" lazy="false" order-by="pid">
+			<key column="csid"></key>
+			<one-to-many class="com.wq.product.pojo.Product"/>
+		</set>
+	</class>
+</hibernate-mapping>
