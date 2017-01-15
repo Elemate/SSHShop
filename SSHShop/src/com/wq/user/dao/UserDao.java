@@ -8,6 +8,8 @@ import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.wq.user.pojo.User;
+import com.wq.utils.PageBean;
+import com.wq.utils.PageHibernateCallback;
 
 /**
  *<p>Title:</p>
@@ -78,6 +80,57 @@ public class UserDao extends HibernateDaoSupport {
 		}
 		return null;
 	}
+
+	/**
+	 *  查找所有注册用户
+	 * @param page
+	 * @return
+	 */
+	public int findUserCount() {
+		// TODO Auto-generated method stub
+		String hql = "select count(*) from User";
+		List<Long> list = this.getHibernateTemplate().find(hql);
+		if (list!=null && list.size()>0) {
+			return list.get(0).intValue();
+		}
+		return 0;
+	}
+
+	/**
+	 * @param begin
+	 * @param limit
+	 * @return
+	 */
+	public List<User> findAll(int begin, int limit) {
+		String hql = "from User";
+		List<User> list = this.getHibernateTemplate().execute(new PageHibernateCallback<User>(hql, begin, limit));
+		if (list!=null && list.size()>0) {
+			return list;
+		}
+		return null;
+	}
+
+	/**
+	 * @param uid
+	 * @return
+	 */
+	public User findUser(Integer uid) {
+		String hql = "from User where uid = ?";
+		List<User> list = this.getHibernateTemplate().find(hql, uid);
+		if (list!=null && list.size()>0) {
+			return list.get(0);
+		}
+		return null;
+	}
+
+	/**
+	 * @param _user
+	 */
+	public void deleteUser(User _user) {
+		// TODO Auto-generated method stub
+		this.getHibernateTemplate().delete(_user);
+	}
+
 
 
 	

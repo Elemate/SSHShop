@@ -8,5 +8,4 @@ package com.wq.category.action;
  *
  */
 public class CategoryAction {
-
 }

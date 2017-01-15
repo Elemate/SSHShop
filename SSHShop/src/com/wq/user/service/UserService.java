@@ -3,11 +3,14 @@
  */
 package com.wq.user.service;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wq.user.dao.UserDao;
 import com.wq.user.pojo.User;
 import com.wq.utils.MailUtils;
+import com.wq.utils.PageBean;
 import com.wq.utils.UUIDUtils;
 
 /**
@@ -50,9 +53,6 @@ public class UserService {
 	public User findByCode(String code) {
 		return userDao.findByCode(code);
 	}
-	public UserDao getUserDao() {
-		return userDao;
-	}
 
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
@@ -75,6 +75,46 @@ public class UserService {
 	 */
 	public User userLogin(User user) {
 		return userDao.userLogin(user);
+	}
+
+	/**
+	 *  查询用户总记录数
+	 * @param page
+	 * @return
+	 */
+	public PageBean<User> findAll(int page) {
+		// TODO Auto-generated method stub
+		PageBean<User> pageBean = new PageBean<User>();
+		int limit = 8;	//每页8条记录
+		int totalCount;		//总记录数
+		totalCount = userDao.findUserCount();	
+		int totalPage = totalCount%limit==0 ? totalCount/limit : (totalCount/limit+1);		//总页数
+		pageBean.setLimit(limit);
+		pageBean.setTotalCount(totalCount);
+		pageBean.setTotalPage(totalPage);
+		pageBean.setPage(page);
+		int begin = (page-1)*limit;
+		List<User> list = userDao.findAll(begin,limit);
+		pageBean.setList(list);
+		return pageBean; 
+	}
+
+	/**
+	 *  根据用户id查找用户实体
+	 * @param uid
+	 * @return
+	 */
+	public User findUser(Integer uid) {
+		// TODO Auto-generated method stub
+		return userDao.findUser(uid);
+	}
+
+	/**
+	 * @param _user
+	 */
+	public void deleteUser(User _user) {
+		// TODO Auto-generated method stub
+		userDao.deleteUser(_user);
 	}
 	
 }

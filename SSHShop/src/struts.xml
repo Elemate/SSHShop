@@ -46,5 +46,25 @@
 			<result name="removeOrderItem">/WEB-INF/jsp/orderList.jsp</result>
 			<result name="payOrder">/WEB-INF/jsp/order.jsp</result>
 		</action>
+		
+		<!-- 后台管理模块 -->
+		<action name="adminuser_*" class="adminuserAction" method="{1}">
+			<result name="loginFail">/admin/index.jsp</result>
+			<result name="adminPage">/admin/index.jsp</result>
+			<result name="loginSuccess">/admin/home.jsp</result>
+			<result name="findAll">/admin/user/list.jsp</result>
+		</action>
+		<action name="useradmin_*" class="useradminAction" method="{1}">
+			<result name="delete" type="redirectAction">adminuser_findAll?page=1</result>
+			<result name="update" type="redirectAction">adminuser_findAll?page=1</result>
+			<result name="edit">/admin/user/edit.jsp</result>
+		</action>
+		<action name="categoryadmin_*" class="categoryadminAction" method="{1}">
+			<result name="findAll">/admin/category/list.jsp</result>
+			<result name="edit">/admin/category/edit.jsp</result>
+			<result name="delete" type="redirectAction">categoryadmin_findAll</result>
+			<result name="update" type="redirectAction">categoryadmin_findAll</result>
+			<result name="save" type="redirectAction">categoryadmin_findAll</result>
+		</action>
 	</package>
 </struts>   

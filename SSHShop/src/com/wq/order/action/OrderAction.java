@@ -99,10 +99,10 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 	
 	//未付款订单进入支付页面
 	public String payOrder() throws IOException, ServletException{
-//		order = orderService.findOrderByOid(order.getOid());
+		order = orderService.findOrderByOid(order.getOid());
 //		ServletActionContext.getResponse().sendRedirect("https://www.baidu.com");
-		ServletActionContext.getRequest().getRequestDispatcher("${pageContext.request.contextPath}/user_regist.action").forward(null, null);;
-		return NONE;
+//		ServletActionContext.getRequest().getRequestDispatcher("${pageContext.request.contextPath}/user_regist.action").forward(null, null);;
+		return "payOrder";
 	}
 	
 	//订单支付功能

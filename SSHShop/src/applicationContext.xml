@@ -40,6 +40,7 @@
 				<value>com/wq/categorySecond/pojo/CategorySecond.hbm.xml</value>
 				<value>com/wq/order/pojo/Order.hbm.xml</value>
 				<value>com/wq/order/pojo/OrderItem.hbm.xml</value>
+				<value>com/wq/adminuser/pojo/Adminuser.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -72,6 +73,16 @@
 	<bean id="orderAction" class="com.wq.order.action.OrderAction" scope="prototype">
 		<property name="orderService" ref="orderService"></property>
 	</bean>
+	<bean name="adminuserAction" class="com.wq.adminuser.action.AdminuserAction" scope="prototype">
+		<property name="adminuserService" ref="adminuserService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean name="useradminAction" class="com.wq.adminuser.action.UseradminAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean name="categoryadminAction" class="com.wq.adminuser.action.CategoryadminAction" scope="prototype">
+		<property name="categoryService" ref="categoryService"></property>
+	</bean>
 	
 	<!-- service层的配置 ==================== -->
 	<bean id="userService" class="com.wq.user.service.UserService">
@@ -86,6 +97,9 @@
 	<bean id="orderService" class="com.wq.order.service.OrderService">
 		<property name="orderDao" ref="orderDao"></property>
 	</bean>
+	<bean id="adminuserService" class="com.wq.adminuser.service.AdminuserService">
+		<property name="adminuserDao" ref="adminuserDao"></property>
+	</bean>
 	
 	<!-- dao层的配置 ================================ -->
 	<bean id="userDao" class="com.wq.user.dao.UserDao">
@@ -98,6 +112,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="orderDao" class="com.wq.order.dao.OrderDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="adminuserDao" class="com.wq.adminuser.dao.AdminuserDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 </beans>

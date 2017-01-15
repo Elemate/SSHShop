@@ -22,7 +22,7 @@
 			</li>
 			</s:else>
 		
-			<li><a>会员中心</a> |</li>
+			<li><a href="${pageContext.request.contextPath }/adminuser_adminPage.action">后台管理</a> |</li>
 			<li><a>购物指南</a> |</li>
 			<li><a>关于我们</a></li>
 		</ul>
