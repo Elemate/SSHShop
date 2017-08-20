@@ -18,6 +18,7 @@ public class CartAction extends ActionSupport {
 	private Integer pid;
 	private Integer count;
 	private ProductService productService;
+	private int x;
 	
 	//添加购物项的方法
 	public String addCart(){
